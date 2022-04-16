@@ -1,7 +1,7 @@
 galaxy_info:
-  author: your name
-  description: your role description
-  company: your company (optional)
+  author: Darko Gavrilovic
+  description: Omeka 3.0.2 Classic Installation on Debian/Ubuntu
+  company: n/a
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
