@@ -1,5 +1,5 @@
-# omeka-dev-site
-An automated Omeka development environment
+# Omeka Vagrnat Development Environment
+An automated Omeka development environment. This setup will install Omeka 3.0.2 Classic onto Ubuntu 20 LTS on your computer in a contained Vagrant environment.
 
 This project uses Vagrnat and Ansible to setup a development environment on your workstation
 
