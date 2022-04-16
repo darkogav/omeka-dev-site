@@ -1,4 +1,4 @@
-# Omeka Development Environment for the Digital Humanities
+# Omeka development environment for Digital Humanities research projects
 An automated Omeka virtual development environment. This setup will install Omeka 3.0.2 Classic onto Ubuntu 20 LTS on your computer in a contained Vagrant virtual environment.
 
 This has been tested on Windows but should work on Mac OS X  as well.
