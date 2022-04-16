@@ -18,10 +18,10 @@ Create one additional folder called *data*. This folder will contain the files o
 
 - Install Vagrant
 - Lauch a terminal window
-- type (vagrant up)
-- Once complete, type (vagrant ssh)
-- type (cd work)
-- type (ansible-playbook site.yml)
+- type `vagrant up`
+- Once complete, type `vagrant ssh`
+- type `cd work`
+- type `ansible-playbook site.yml`
 
 Once the process is complete, you will have a Omeka installtion on your computer contained within a Vagrant instance. You can access the web application by navigating to the URL http://127.0.0.1:8080
 
