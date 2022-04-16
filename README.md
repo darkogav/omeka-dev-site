@@ -18,8 +18,9 @@ Create one additional folder called *data*. This folder will contain the files o
 
 - Install Vagrant
 - Lauch a terminal window
+- navigate to the directory
 - type `vagrant up`
-- Once complete, type `vagrant ssh`
+- Once the process is complete, type `vagrant ssh`
 - type `cd work`
 - type `ansible-playbook site.yml`
 
