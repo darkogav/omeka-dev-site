@@ -1,0 +1,34 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# Vagrant init file for Omeka install
+# Author: Darko Gavrilovic
+# Date: April 15, 2022
+# Ver: 1.01
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/ubuntu-20.04"
+
+  # set hostname
+  config.vm.hostname = "omekadev"
+
+	# open ports for local testing
+  config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+  config.vm.network "forwarded_port", guest: 443, host: 4430, host_ip: "127.0.0.1"
+  config.vm.network "forwarded_port", guest: 3306, host: 33060, host_ip: "127.0.0.1"
+
+	# folders for working. These must exists in this vagrant folder you run this on. 
+  config.vm.synced_folder "work", "/home/vagrant/work"  
+  config.vm.synced_folder "data", "/home/vagrant/data"  
+
+  config.vm.provider "virtualbox" do |vb|
+     vb.memory = "1024"
+   end
+   
+   # kick start a post install script
+  config.vm.provision "shell", path: "post.sh"
+
+# Notes:
+# The admin site will be http://127.0.0.1:8080/admin/users/login
+# The public site will be http://127.0.0.1:8080
+
+end

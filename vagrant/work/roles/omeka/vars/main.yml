@@ -1,0 +1,17 @@
+---
+# vars file for omeka
+pkgs:
+- unzip
+- tree
+- apache2
+- mariadb-server
+- python3-mysqldb
+- git
+- vim
+
+php_pkgs:
+- php
+- php-mbstring
+- php-mysql
+- php-xml
+- imagemagick

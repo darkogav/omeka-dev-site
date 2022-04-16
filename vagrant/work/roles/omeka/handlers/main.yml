@@ -1,0 +1,6 @@
+---
+# handlers file for omeka
+- name: reload_apache
+  service: 
+    name: apache2
+    state: reloaded

@@ -1,0 +1,8 @@
+---
+- name: install omeka
+  hosts: localhost
+  become: yes
+  gather_facts: false
+
+  roles:
+  - omeka

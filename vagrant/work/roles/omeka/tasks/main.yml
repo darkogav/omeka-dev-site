@@ -1,0 +1,97 @@
+---
+# tasks file for omeka development instance
+#
+- name: Install required packages.
+  apt:
+    name: '{{ pkgs }}'
+    state: present
+
+- name: Install required php packages. As of writing this will install php 7.4 and I have checked that Omeka is working fine with it.
+  apt:
+    name: '{{ php_pkgs }}'
+    state: present
+
+- name: Create download dir
+  file:
+    dest: /vagrant/data/files/
+    state: directory
+    owner: vagrant
+    group: vagrant
+
+- name: Download and extract Omeka 3.0.2 classic into files dir
+  unarchive:
+    src: https://github.com/omeka/Omeka/releases/download/v3.0.2/omeka-3.0.2.zip
+    dest: /vagrant/data/files
+    remote_src: yes
+
+- name: Create a sym link for apache for easier management
+  file:
+    src: /home/vagrant/data/files/omeka-3.0.2
+    dest: /var/www/omeka
+    owner: www-data
+    group: www-data
+    state: link
+
+- name: Change apache conf file to point to Omeka
+  lineinfile: 
+    path: /etc/apache2/sites-available/000-default.conf
+    regexp: 'DocumentRoot /var/www/html'
+    line: 'DocumentRoot /var/www/omeka'
+    backup: yes
+
+- name: Change apache loglevel to debug for development 
+  lineinfile: 
+    path: /etc/apache2/sites-available/000-default.conf
+    firstmatch: yes
+    regexp: 'LogLevel '
+    insertafter: '^#LogLevel '
+    line: 'LogLevel debug'
+    state: present
+    backup: yes
+
+- name: Setup apache conf file for Omeka docroot
+  blockinfile: 
+    path: /etc/apache2/sites-available/000-default.conf
+    insertafter: '^DocumentRoot'
+    block: |
+        <Directory /var/www/omeka>
+            Options FollowSymLinks
+            AllowOverride All
+            Require all granted
+        </Directory>
+    backup: yes
+
+- name: Enable mod rewrite in Apache
+  shell: a2enmod rewrite    
+  notify:
+  - reload_apache
+    
+- name: Create omeka mysql database
+  mysql_db:
+    name: omeka 
+    state: present    
+
+- name: Create omeka database user with user name 'omeka' and password 'omeka' with all database privileges for omeka. THIS IN INSECURE. DO NOT USE FOR PRODUCTION
+  mysql_user:
+    name: omeka
+    password: omeka
+    priv: 'omeka.*:ALL'
+    state: present
+
+- name: Setup omeka db.ini file
+  replace: 
+    path: /var/www/omeka/db.ini
+    regexp: "XXXXXXX"
+    replace: "omeka"
+  notify:
+  - reload_apache
+
+- name: Setup omeka db.ini localhost file
+  replace: 
+    path: /var/www/omeka/db.ini
+    regexp: 'host     = "omeka"'
+    replace: 'host     = "localhost"'
+  notify:
+  - reload_apache
+
+...
