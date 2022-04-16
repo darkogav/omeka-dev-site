@@ -1,9 +1,7 @@
-# Omeka Vagrant Development Environment
-An automated Omeka development environment. This setup will install Omeka 3.0.2 Classic onto Ubuntu 20 LTS on your computer in a contained Vagrant environment.
+# Omeka Development Environment for the Digital Humanities
+An automated Omeka virtual development environment. This setup will install Omeka 3.0.2 Classic onto Ubuntu 20 LTS on your computer in a contained Vagrant environment.
 
-This project uses Vagrnat and Ansible to setup a development environment on your workstation
-
-This has been tested on Windows but should work on Mac OS X. 
+This has been tested on Windows but should work on Mac OS X  as well.
 
 Requirements:
 - [Hashi Corp Vagrant](https://www.vagrantup.com/downloads)
