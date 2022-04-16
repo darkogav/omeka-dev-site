@@ -31,6 +31,6 @@ To shutdowm this vagrant instance when you are not using it
 - type `vagrant halt`
 
 Follw the documentation of the Omeka project on how to further work on your DH research project
-[Omeka Classic](https://omeka.org/classic/docs/)
-[Omeka S](https://omeka.org/s/docs/user-manual/)
+- [Omeka Classic](https://omeka.org/classic/docs/)
+- [Omeka S](https://omeka.org/s/docs/user-manual/)
 
